@@ -1,4 +1,4 @@
 autopep8
 sqlalchemy
-sqlalchemy-migrate
 psycopg2
+alembic

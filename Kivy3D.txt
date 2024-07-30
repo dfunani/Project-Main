@@ -1,0 +1,36 @@
+#Global Import
+import kivy3
+from kivy.app import App
+
+Kivy3D:
+	Layouts:
+		FloatLayout()
+	from kivy.uix.floatlayout import FloatLayout
+	Scene:
+		Scene()
+	Renederer:	
+		Renderer()
+	Camera:
+		PerspectiveCamera(FOV=degree, aspect=1, near=1, far=1000)
+	from kivy3 import Scene, Renderer, PerspectiveCamera
+
+3D only self.renderer.bind(size=self._adjust_aspect)
+def _adjust_aspect(self, inst, val):
+        rsize = self.renderer.size
+        aspect = rsize[0] / float(rsize[1])
+        self.renderer.camera.aspect = aspect
+		
+from kivy3.loaders import OBJLoader		
+Loading from Blender or Unity:
+	# Resources pathes
+	_this_path = os.path.dirname(os.path.realpath(__file__))
+	shader_file = os.path.join(_this_path, "./simple.glsl")
+	obj_path = os.path.join(_this_path, "./testnurbs.obj")
+	
+	# load obj file
+        loader = OBJLoader()
+        obj = loader.load(obj_path)
+
+        scene.add(*obj.children)
+        for obj in scene.children:
+            obj.pos.z = -20
